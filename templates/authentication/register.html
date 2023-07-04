@@ -1,0 +1,41 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block body %}
+
+<div class="container-fluid my-2" style="text-align: center;">
+    <img src="{% static 'images/logo.png' %}" class="rounded-circle img-thumbnail" width="60px" height="60px" alt="">
+</div>
+
+<div class="container  justify-content-center align-items-center ">
+    <form  method="POST" class="col-lg-5 col-xl-5 col-sm-10 col-md-10 col-xs-11 login-form container rounded mt-3 p-0 border border-primary shadow" width="600px">
+        {% csrf_token %}
+        <div class="container bg-primary p-0 m-0">
+            <div class="row p-1 m-0 text-white" style="text-align: center;">
+                <h3>Register to BOC</h3> 
+            </div>
+        </div>
+        <div class="container p-5">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    placeholder="Enter email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                    else.</small>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Confirm Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-primary my-1">Register</button><br><br>
+            <a href="{% url 'au:login' %}">Already have an account? Login!</a> <br>
+        </div>
+    </form>
+</div>
+
+{% endblock body %}
+
