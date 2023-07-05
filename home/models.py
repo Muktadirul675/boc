@@ -8,7 +8,6 @@ class Profile(models.Model):
     image = models.ImageField(upload_to="profiles/",default="user_bvpgnf.png")
     created = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True)
-    boc_id = models.CharField(max_length=6,blank=True)
 
     def __str__(self):
         return f'{self.user}'

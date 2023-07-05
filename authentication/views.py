@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from decorators.auth_dec import *
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import User
  
 # Create your views here.
 
@@ -34,13 +34,10 @@ def register(request):
         username = request.POST['email']
         password = request.POST['password']
         name = request.POST['name']
-        user = user = authenticate(request,username=username,password=password)
-        if user is not None:
+        if User.objects.filter(username=username).exists():
             messages.info("Email is already registered")
         else:
-            new_user = User.objects.create_user(username=username,password=password)
-            new_user.email = username
-            new_user.first_name = name
+            new_user = User.objects.create_user(username,username,password)
             new_user.save()
             login(request,new_user)
             return redirect("home:home")
