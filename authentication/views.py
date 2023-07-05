@@ -35,11 +35,12 @@ def register(request):
         password = request.POST['password']
         name = request.POST['name']
         if User.objects.filter(username=username).exists():
-            messages.info("Email is already registered")
+            messages.warning(request,"Email is already registered")
         else:
             new_user = User.objects.create_user(username,username,password)
             new_user.save()
             login(request,new_user)
+            messages.success(request,"Successfully registered!")
             return redirect("home:home")
     cont = {}
     return render(request,f'{au}/register.html',cont)
