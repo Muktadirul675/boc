@@ -80,40 +80,31 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{% url 'home:home' %}">Home</a>
+              <a class="nav-link active" aria-current="page" href="{% url 'home:home' %}"><i class="fas fa-home"></i> Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active link-primary" href="#">News</a>
+              <a class="nav-link active link-primary" href="#"><i class="fas fa-newspaper"></i> News</a>
             </li>
             <li class="nav-item dropdown  ">
               <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Problems 
+                <i class="fas fa-question"></i> Problems 
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Math</a></li>
-                <li><a class="dropdown-item" href="#">Physics</a></li>
+                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-square-root-variable"></i> Math</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-magnet"></i> Physics</a></li>
               </ul>
             </li> 
           </ul>
           <form class="d-flex">
             {% if user.is_authenticated %}
-            <a href=""><img src="{% static 'images/mahi.jpg' %}" height="30px" class="mx-2 img-thumbmail rounded-circle border border-secondary" width="30px" alt=""></a>
-            <a class="btn btn-sm btn-outline-primary" type="button" href="{% url 'au:logout' %}"><svg xmlns="http://www.w3.org/2000/svg"
-                width="20" height="20" fill="currentColor" class="bi bi-box-arrow-right ms-1" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                  d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
-                <path fill-rule="evenodd"
-                  d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
-              </svg></a>
+            <a href=""><img src="{{user.profile.image.url}}" height="30px" class="mx-2 img-thumbmail rounded-circle" width="30px" alt=""></a>
+            <a class="btn btn-sm btn-outline-primary" type="button" href="{% url 'au:logout' %}">
+              <i class="fa-solid fa-right-from-bracket"></i>
+            </a>
             {% else %}
             <a href="{% url 'au:login' %}" class="btn btn-sm btn-outline-primary mx-1" type="button">Login
-               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                class="bi bi-box-arrow-left ms-1" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                  d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z" />
-                <path fill-rule="evenodd"
-                  d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" />
-              </svg> 
+              <i class="fa-solid fa-right-to-bracket"></i>
               </a>
             {% endif %}
           </form>
@@ -235,3 +226,16 @@
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+

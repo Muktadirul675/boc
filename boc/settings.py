@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 from django.contrib.messages import constants as messages
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+import cloudinary_storage
 
 
 MESSAGE_TAGS = {
@@ -34,7 +38,7 @@ SECRET_KEY = 'django-insecure-0l))cks+&p%@$t16h5_z2r*f1y_m2!qsfjgmw^&t4a6zftvg8$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['boc.onrender.com']
+ALLOWED_HOSTS = ['boc.onrender.com','localhost']
 
 # Application definition
 
@@ -48,6 +52,8 @@ INSTALLED_APPS = [
     'demo',
     'django_celery_beat',
     'administration','authentication','home',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -62,6 +68,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'boc.urls'
+
+
 
 TEMPLATES = [
     {
@@ -129,6 +137,24 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
+
+cloudinary.config(
+    cloud_name= 'dsfybjdih', 
+    api_key= '736786788472294', 
+    api_secret= 'AYAcIIM23EotsJJATBA1zRQmtNc' 
+)
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dsfybjdih', 
+    'API_KEY': '736786788472294', 
+    'API_SECRET': 'AYAcIIM23EotsJJATBA1zRQmtNc' 
+}
+
+MEDIA_URL = '/boc_media/'
+MEDIA_ROOT = BASE_DIR / 'boc_media'
+
+
+DEFAULT_FILE_STORAGE =  'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

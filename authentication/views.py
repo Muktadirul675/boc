@@ -33,12 +33,14 @@ def register(request):
     if request.method == "POST":
         username = request.POST['email']
         password = request.POST['password']
+        name = request.POST['name']
         user = user = authenticate(request,username=username,password=password)
         if user is not None:
             messages.info("Email is already registered")
         else:
             new_user = User.objects.create_user(username=username,password=password)
             new_user.email = username
+            new_user.first_name = name
             new_user.save()
             login(request,new_user)
             return redirect("home:home")
