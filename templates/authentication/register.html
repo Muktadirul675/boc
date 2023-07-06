@@ -1,7 +1,10 @@
 {% extends '../base.html' %}
 {% load static %}
+{% load socialaccount %}
 
 {% block body %}
+
+
 
 <div class="container-fluid my-2" style="text-align: center;">
     <img src="{% static 'images/logo.png' %}" class="rounded-circle img-thumbnail" width="60px" height="60px" alt="">
@@ -16,31 +19,45 @@
             </div>
         </div>
         <div class="container-fluid p-5">
+        <div href="" class="continer-fluid auths justify-content-center align-items-center">
+            <a href="{% provider_login_url 'google' %}" class="row provider justify-content-center align-items-center">
+                <div class="col justify-content-center align-items-center bg-light p-2 rounded" style="text-align: center;">
+                    <img src="{% static 'images/google.png' %}" height="30px" width="30px" alt=""> Register With Google
+                </div>
+            </a>
+        </div>
+        <div class="row my-2" style="text-align: center;"><div class="col-12">Or</div></div>
+        
+        {% include '../messages.html' %}
             <div class="form-group my-2">
-                <label for="exampleInputEmail1"><i class="fas fa-user"></i> Name</label>
-                <input name="name" type="text" class="form-control"  
-                    placeholder="Your Name" required>
+                <label class="my-1" ><i class="fas fa-user"></i> First Name</label>
+                <input name="first_name" type="text" class="form-control"  
+                    placeholder="" required>
             </div>
             <div class="form-group my-2">
-                <label for="exampleInputEmail1"><i class="fas fa-envelope"></i> Email</label>
-                <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    placeholder="Enter email">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                    else.</small>
+                <label class="my-1" ><i class="fas fa-user"></i> Last Name</label>
+                <input name="last_name" type="text" class="form-control"  
+                    placeholder="" required>
             </div>
             <div class="form-group my-2">
-                <label for="exampleInputPassword1"><i class="fas fa-key"></i> Password</label>
-                <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <label class="my-1" ><i class="fas fa-envelope"></i> Email</label>
+                <input name="email" type="email" class="form-control"  aria-describedby="emailHelp"
+                    placeholder="">
             </div>
             <div class="form-group my-2">
-                <label for="exampleInputPassword1"><i class="fas fa-key"></i> Confirm Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <label class="my-1" ><i class="fas fa-key"></i> Password</label>
+                <input name="password" id="password" type="password" class="form-control" placeholder="">
             </div>
-            <button type="submit" class="btn btn-primary my-1">Register</button><br><br>
+            <div class="form-group my-2">
+                <label class="my-1" ><i class="fas fa-key"></i> Confirm Password</label>
+                <input type="password" id="cpassword" name="cpassword" class="form-control" placeholder="">
+            </div>
+            <button type="submit" id="registerbtn" class="btn btn-primary my-1">Register</button><br><br>
             <a href="{% url 'au:login' %}">Already have an account? Login!</a> <br>
         </div>
     </form>
 </div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 
 {% endblock body %}
 

@@ -1,5 +1,6 @@
 {% extends '../base.html' %}
 {% load static %}
+{% load socialaccount %}
 
 {% block body %}
 
@@ -15,6 +16,15 @@
             </div>
         </div>
         <div class="container p-5">
+             <div href="" class="continer-fluid auths justify-content-center align-items-center">
+            <a href="{% provider_login_url 'google' %}" class="row provider justify-content-center align-items-center">
+                <div class="col justify-content-center align-items-center bg-light p-2 rounded" style="text-align: center;">
+                    <img src="{% static 'images/google.png' %}" height="30px" width="30px" alt=""> Login With Google
+                </div>
+            </a>
+        </div>
+        <div class="row my-2" style="text-align: center;"><div class="col-12">Or</div></div>
+        
             {% include "../messages.html" %}
             <div class="form-group my-2">
                 <label for="exampleInputEmail1">Email address</label>
@@ -27,7 +37,7 @@
             </div>
             <button type="submit" class="btn btn-primary my-2">Login</button><br>
             <a href="{% url 'au:register' %}">Don't have an account? Register!</a> <br>
-            <a href="#">Forgot password?</a> 
+            <a href="#" >Forgot password?</a> 
         </div>
     </form>
 </div>

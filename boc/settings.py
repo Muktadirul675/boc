@@ -10,6 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+# TODO !important Email smtp change
+# TODO !important Cloudinary account change
+#  !important google account OAUTH change
+
 from pathlib import Path
 from django.contrib.messages import constants as messages
 import cloudinary
@@ -38,6 +42,7 @@ SECRET_KEY = 'django-insecure-0l))cks+&p%@$t16h5_z2r*f1y_m2!qsfjgmw^&t4a6zftvg8$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# TODO Production
 ALLOWED_HOSTS = ['boc.onrender.com','localhost','127.0.0.1']
 
 # Application definition
@@ -49,7 +54,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'demo',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
+    'demo','celery',
     'django_celery_beat',
     'administration','authentication','home',
     'cloudinary',
@@ -97,7 +108,7 @@ WSGI_APPLICATION = 'boc.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'db2.sqlite3',
     }
 }
 
@@ -153,7 +164,7 @@ CLOUDINARY_STORAGE = {
 MEDIA_URL = '/boc_media/'
 MEDIA_ROOT = BASE_DIR / 'boc_media'
 
-
+# TODOD Production 
 DEFAULT_FILE_STORAGE =  'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Default primary key field type
@@ -169,10 +180,43 @@ CELERY_TASK_SERIALIZER = 'json'
 
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
+# TODO production
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = "muktadirul.05@gmail.com"
-EMAIL_HOST_PASSWORD = "itsmeand.."
+EMAIL_HOST_USER = "boc.clubofficial@gmail.com"
+EMAIL_HOST_PASSWORD = "nkvzkefiklqwknky"
 DEFAULT_FROM_EMAIL = 'Celery <muktadirul.05@gmail.com>'
+
+SITE_ID = 2
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend'
+]
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    },
+    'facebook': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    } 
+}
+
